@@ -1,0 +1,10 @@
+.user-table {
+    margin: 120px auto;
+    width: 50rem;
+}
+.user-table__header {
+    text-align: center;
+    margin: 20px;
+    font-size: 22px;
+    text-transform: uppercase;
+}

@@ -1,0 +1,64 @@
+.post-page {
+    /* padding: 10rem 0 0 15rem; */
+    margin: 10rem 0 0 0rem;
+    padding: 1rem 6rem 0 10rem;
+}
+.post-header {
+    position: absolute;
+    top: 140px;
+    left: 160px;
+}
+.post-table__header {
+    text-align: center;
+    margin: 20px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-btn ion-icon {
+    margin-right: 10px;
+    font-size: 24px;
+}
+.post-list__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.5;
+    text-transform: uppercase;
+}
+.no-post__found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.no-post__found p {
+    margin: 20px;
+}
+.table-post__image {
+    width: 60rem;
+    object-fit: cover;
+    /* height: 150px; */
+    /* object-fit: contain; */
+}
+.table-post__actions > button:first-child {
+    margin-right: 20px;
+}
+.table-post__title *,
+.table-post__description * {
+    font-weight: normal;
+    /* font-size: 16px; */
+}
+.post-table table * {
+    font-size: 16px;
+}

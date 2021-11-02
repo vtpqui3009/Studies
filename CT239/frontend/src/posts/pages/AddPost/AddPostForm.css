@@ -1,0 +1,45 @@
+.add-post__form {
+    list-style: none;
+    margin: 100px auto;
+    padding: 1rem;
+    width: 90%;
+    max-width: 40rem;
+    border-radius: 6px;
+    background-color: #fff;
+}
+.add-post__form > span {
+    text-align: center;
+    font-size: 24px;
+    text-transform: uppercase;
+    display: block;
+}
+.title > label,
+.author > label {
+    display: block;
+    margin: 10px 0;
+    font-weight: normal;
+}
+.title > input,
+.author > input {
+    width: 100%;
+    outline: none;
+    border-radius: 4px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+.title > input:focus,
+.author > input:focus {
+    border: 1px solid #0074cc;
+}
+.description > p {
+    margin-bottom: 10px;
+}
+.content > p {
+    margin: 10px 0;
+}
+
+.ck-rounded-corners .ck.ck-editor__editable:not(.ck-editor__nested-editable),
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-rounded-corners {
+    height: 160px;
+}

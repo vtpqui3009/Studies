@@ -1,0 +1,13 @@
+.on-top__button {
+    padding: 8px 10px;
+    background-color: #ec0000;
+    color: white;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 5%;
+    right: 2%;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all 0.25s linear;
+    /* z-index: 9999; */
+}

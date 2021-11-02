@@ -1,0 +1,26 @@
+.footer-grid {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%;
+}
+.footer-grid__item {
+    width: 33%;
+}
+.footer-grid__item:nth-child(2),
+.footer-grid__item:nth-child(3) {
+    margin-top: 20px;
+}
+.footer-grid__header {
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 18px;
+}
+.footer-grid__header img {
+    width: 40%;
+}
+.footer-grid__desc {
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 30px;
+}

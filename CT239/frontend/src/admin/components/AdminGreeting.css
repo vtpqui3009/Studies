@@ -1,0 +1,15 @@
+.admin-greeting {
+    width: 45rem;
+    margin: 40px 0 20px 10%;
+    background-color: #1362b1;
+    color: white;
+    padding: 30px 20px;
+    border-radius: 4px;
+    line-height: 36px;
+}
+.admin-greeting__caption {
+    font-size: 22px;
+}
+.admin-greeting__conten {
+    font-size: 14px;
+}

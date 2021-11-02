@@ -1,0 +1,49 @@
+.category-header {
+    position: absolute;
+    top: 140px;
+    left: 160px;
+}
+.category-table {
+    margin: 180px auto;
+    width: 50rem;
+}
+.category-table > table {
+    font-weight: normal;
+    font-size: 16px;
+}
+.category-table__header {
+    text-align: center;
+    margin: 20px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.add-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.add-btn ion-icon {
+    margin-right: 10px;
+}
+.category-list__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.5;
+    text-transform: uppercase;
+}
+.no-category__found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.no-category__found p {
+    margin: 20px;
+}

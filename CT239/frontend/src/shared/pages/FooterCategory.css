@@ -1,0 +1,16 @@
+.footer-category {
+    display: flex;
+    width: 100%;
+}
+.footer-category__column {
+    width: 30%;
+    line-height: 40px;
+}
+.footer-category__item {
+    transition: all 0.25s ease-in-out;
+    cursor: pointer;
+}
+.footer-category__item:hover {
+    color: #ec0000;
+    text-decoration: underline;
+}

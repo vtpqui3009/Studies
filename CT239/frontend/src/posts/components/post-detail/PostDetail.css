@@ -1,0 +1,41 @@
+.post-detail__wrapper {
+    margin-top: 80px;
+    padding: 0 200px;
+}
+.post-date {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    color: gray;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.post-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 40px 0;
+}
+.post-desc {
+    line-height: 30px;
+    font-weight: 600;
+    font-size: 18px;
+}
+.post-image {
+    width: 100%;
+}
+.post-image img {
+    width: 85%;
+    height: 600px;
+    display: block;
+    margin: 20px auto;
+}
+.post-content p {
+    line-height: 30px;
+}
+.post-author {
+    font-weight: 600;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}

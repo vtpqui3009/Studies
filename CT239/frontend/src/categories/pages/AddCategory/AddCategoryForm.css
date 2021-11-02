@@ -1,0 +1,20 @@
+.add-category__form {
+    padding: 140px 200px;
+}
+.add-category__form p {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 24px;
+    margin-right: 20px;
+}
+.add-category__form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #ccc;
+    margin: 20px 0;
+}
+.add-category__form > div > label {
+    font-weight: normal;
+}

@@ -1,0 +1,38 @@
+.admin-dashboard__view-form {
+    width: 40rem;
+    /* width: 100%; */
+    margin: 0 auto;
+    padding: 20px;
+}
+.admin-dashboard__view-item * {
+    font-size: 14px;
+}
+.admin-dashboard__view-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.admin-dashboard__view-item > :first-child {
+    width: 20%;
+}
+.admin-dashboard__view-item > :last-child {
+    width: 80%;
+}
+.admin-dashboard__view-input {
+    display: block;
+    margin-bottom: 20px;
+    border: 1px solid gray;
+    padding: 6px 20px;
+    width: 100%;
+}
+textarea:focus {
+    outline: none;
+}
+textarea,
+input {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+textarea {
+    resize: none;
+}

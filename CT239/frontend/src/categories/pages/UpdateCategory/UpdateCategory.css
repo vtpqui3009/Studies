@@ -1,0 +1,12 @@
+.category-form__update {
+    padding: 140px 200px;
+}
+.category-form__update-title {
+    font-size: 22px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+.category-form__update > div > label {
+    font-weight: normal;
+}

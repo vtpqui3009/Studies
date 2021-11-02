@@ -1,0 +1,20 @@
+.user-form__update {
+    padding: 140px;
+    width: 50rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.user-form__input {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    outline: none;
+    border: 1px solid #ccc;
+}
+.user-form__input:focus {
+    outline: none;
+}

@@ -1,0 +1,28 @@
+label {
+    font-weight: bold;
+}
+select {
+    width: 100%;
+    display: block;
+    margin: 10px 0 20px 0;
+    padding: 8px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    color: gray;
+}
+select:hover {
+    border-color: gray;
+}
+select:focus,
+select:active {
+    border-color: #005cc8;
+}
+option {
+    padding: 10px;
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 10px;
+    display: block;
+}

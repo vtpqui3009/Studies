@@ -1,0 +1,25 @@
+.menu {
+    margin: 140px 100px -40px 105px;
+    list-style: none;
+    display: flex;
+    border-top: 2px solid #ec0000;
+    border-right: 1px solid #eee;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+.menu li {
+    text-align: center;
+    position: relative;
+    padding: 16px;
+}
+.menu li a {
+    padding: 16px;
+}
+.menu li a:hover,
+.menu li a:active,
+.menu li a.active {
+    color: #ec0000;
+    padding-bottom: 0.25rem;
+    border-bottom: 4px solid #ec0000;
+}

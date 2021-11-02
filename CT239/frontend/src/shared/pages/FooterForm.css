@@ -1,0 +1,24 @@
+.footer-form {
+    position: relative;
+}
+.footer-form input {
+    padding: 10px 14px;
+    outline: none;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.footer-form input:focus {
+    outline: none;
+}
+.footer-form button {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: #ec0000;
+    color: white;
+    font-weight: 600;
+    padding: 12px 24px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: block;
+    margin: 20px auto;
+}

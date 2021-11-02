@@ -1,0 +1,49 @@
+.search {
+    position: relative;
+}
+.searchInputs {
+    display: flex;
+}
+.search input {
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    padding: 18px;
+    margin-top: 10px;
+    height: 30px;
+    width: 30rem;
+}
+input:focus {
+    outline: none;
+}
+.searchIcon ion-icon {
+    font-size: 22px;
+    position: absolute;
+    top: 35%;
+    right: 3%;
+}
+
+.dataResult {
+    position: absolute;
+    top: 100%;
+    font-size: 15px;
+    background-color: white;
+}
+
+.dataResult .dataItem {
+    display: flex;
+    align-items: center;
+}
+.dataResult a {
+    text-decoration: none;
+}
+
+.dataResult a p {
+    padding: 10px;
+}
+.dataResult a p:hover {
+    background-color: #ccc;
+}
+
+#clearBtn {
+    cursor: pointer;
+}

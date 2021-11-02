@@ -1,0 +1,24 @@
+.footer-grid__social {
+    display: flex;
+}
+.footer-grid__follow-text {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.footer-grid__social-item {
+    width: 20%;
+}
+.footer-grid__social-item ion-icon {
+    font-size: 30px;
+    cursor: pointer;
+}
+.footer-grid__social-item:first-child ion-icon {
+    color: #3b5998;
+}
+.footer-grid__social-item:nth-child(2) ion-icon {
+    color: #9cdefb;
+}
+.footer-grid__social-item:nth-child(3) ion-icon {
+    color: #dd4b39;
+}
