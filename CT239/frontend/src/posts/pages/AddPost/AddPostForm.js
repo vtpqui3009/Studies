@@ -1,15 +1,14 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../../../shared/components/FormElement/Button";
-import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
 import Select from "./Select";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { AuthContext } from "../../../shared/context/auth-context";
-import { useHttpClient } from "../../../shared/hooks/http-hook";
 import ImageUpload from "../../../shared/components/FormElement/ImageUpload";
 import { useForm } from "../../../shared/hooks/form-hook";
 import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
+import axios from "axios";
 import "./AddPostForm.css";
 const AddPostForm = () => {
     const auth = useContext(AuthContext);
@@ -18,7 +17,7 @@ const AddPostForm = () => {
     const [selectValue, setSelectValue] = useState("");
     const [author, setAuthor] = useState("");
     const [title, setTitle] = useState("");
-    const { isLoading, error, sendRequest, clearError } = useHttpClient();
+    const [isLoading, setIsLoading] = useState(false);
     const [formState, inputHandler] = useForm(
         {
             image: {
@@ -28,9 +27,7 @@ const AddPostForm = () => {
         },
         false
     );
-
     const selectChangedHandler = (event) => {
-        console.log(event.target.value);
         setSelectValue(event.target.value);
     };
     const inputCKEditorDescHandler = (event, editor) => {
@@ -42,28 +39,35 @@ const AddPostForm = () => {
     const history = useHistory();
     const postSubmitHandler = async (e) => {
         e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", ckeditorDescriptionData);
+        formData.append("content", ckeditorContentData);
+        formData.append("author", author);
+        formData.append("image", formState.inputs.image.value);
+        formData.append("category", selectValue);
+        const config = {
+            headers: {
+                Authorization: "Bearer " + auth.token,
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        };
         try {
-            const formData = new FormData();
-            formData.append("title", title);
-            formData.append("description", ckeditorDescriptionData);
-            formData.append("content", ckeditorContentData);
-            formData.append("author", author);
-            formData.append("image", formState.inputs.image.value);
-            formData.append("category", selectValue);
-            await sendRequest(
+            setIsLoading(true);
+            await axios.post(
                 "http://localhost:5000/api/posts/add-post",
-                "POST",
-                {
-                    Authorization: "Bearer " + auth.token
-                },
-                formData
+                formData,
+                config
             );
+            // .then(console.log("Add post success!"))
+            // .catch(console.log("Try again"));
             history.push("/manage-post");
+            setIsLoading(false);
         } catch (err) {}
     };
+
     return (
         <React.Fragment>
-            <ErrorModal error={error} onClear={clearError} />
             <form className="add-post__form" onSubmit={postSubmitHandler}>
                 {isLoading && <LoadingSpinner asOverlay />}
                 <span>Thêm bài viết</span>

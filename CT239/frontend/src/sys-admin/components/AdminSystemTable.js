@@ -1,53 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import AdminDashboardTableItem from "../../admin/components/AdminDashboardTableItem";
-import Pagination from "../../shared/components/Pagination/Pagination";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
 import ReactHtmlParser from "react-html-parser";
 import { Link } from "react-router-dom";
-import AdminDashboardGrid from "../../admin/components/AdminDashboardGrid";
-import axios from "axios";
+import { AuthContext } from "../../shared/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 const AdminSystemTable = (props) => {
-    const [loadedPosts, setLoadedPosts] = useState([]);
+    const { sendRequest } = useHttpClient();
     const [isLoading, setIsloading] = useState(false);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(5);
-    const [isApproved, setIsApproved] = useState("");
-
-    useEffect(() => {
-        const fetchUsers = async () => {
-            setIsloading(true);
-            const response = await axios.get(
-                "http://localhost:5000/api/posts/"
-            );
-            const reponseData = await response.data.posts;
-            setLoadedPosts(reponseData);
-            setIsloading(false);
-        };
-        fetchUsers();
-    }, []);
-    let filterApprovedPost = loadedPosts.filter(
-        (post) => post.isApproved === "Approved"
-    );
-    let filterUnApprovedPost = loadedPosts.filter(
-        (post) => post.isApproved !== "Approved"
-    );
-    let successNumber = filterApprovedPost.length;
-    let pendingNumber = filterUnApprovedPost.length;
-
-    const indexOfLastPost = currentPage * postsPerPage;
-    const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = loadedPosts.slice(indexOfFirstPost, indexOfLastPost);
-    const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    };
+    const auth = useContext(AuthContext);
     return (
         <React.Fragment>
-            <AdminDashboardGrid
-                successNumber={successNumber}
-                successText="Bài viết đã duyệt"
-                pendingNumber={pendingNumber}
-                pendingText="Bài viết chưa duyệt"
-            />
+            {" "}
+            {isLoading && <LoadingSpinner asOverlay />}
             <div className="admin-dashboard__table">
                 <div className="admin-dashboard__table-heading">
                     <AdminDashboardTableItem text="Id" />
@@ -59,9 +24,9 @@ const AdminSystemTable = (props) => {
                     <AdminDashboardTableItem text="Duyệt" />
                     <AdminDashboardTableItem text="Xóa" />
                 </div>
-                {isLoading && <LoadingSpinner asOverlay />}
-                {currentPosts &&
-                    currentPosts.map((post) => {
+
+                {props.posts &&
+                    props.posts.map((post) => {
                         return (
                             <div
                                 className="admin-dashboard__table-content"
@@ -88,7 +53,6 @@ const AdminSystemTable = (props) => {
                                 <AdminDashboardTableItem
                                     text={post.isApproved}
                                 />
-
                                 <AdminDashboardTableItem
                                     text={
                                         <Link to={`view-post/${post.id}`}>
@@ -103,7 +67,6 @@ const AdminSystemTable = (props) => {
                                         </Link>
                                     }
                                 />
-
                                 <AdminDashboardTableItem
                                     text={
                                         <ion-icon
@@ -115,15 +78,30 @@ const AdminSystemTable = (props) => {
                                             }}
                                         ></ion-icon>
                                     }
-                                    onClick={() => {
-                                        setIsApproved("Approved");
-                                        props.onApproveHandler(
-                                            post.id,
-                                            post.isApproved,
-                                            isApproved
-                                        );
+                                    onClick={async () => {
+                                        if (post.isApproved !== "Approved") {
+                                            post.isApproved = "Approved";
+                                        }
+                                        setIsloading(true);
+                                        try {
+                                            await sendRequest(
+                                                "http://localhost:5000/api/posts/update/status/" +
+                                                    post.id,
+                                                "PATCH",
+                                                {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                    Authorization:
+                                                        "Bearer " + auth.token
+                                                },
+                                                JSON.stringify({
+                                                    isApproved: post.isApproved
+                                                })
+                                            );
+                                            setIsloading(false);
+                                        } catch (err) {}
                                     }}
-                                />
+                                />{" "}
                                 <AdminDashboardTableItem
                                     text={
                                         <ion-icon
@@ -135,20 +113,29 @@ const AdminSystemTable = (props) => {
                                             }}
                                         ></ion-icon>
                                     }
-                                    onClick={() => {
-                                        // props.onDelete(post.id);
+                                    onClick={async () => {
+                                        setIsloading(true);
+                                        try {
+                                            await sendRequest(
+                                                "http://localhost:5000/api/posts/delete/" +
+                                                    post.id,
+                                                "DELETE",
+                                                {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                    Authorization:
+                                                        "Bearer " + auth.token
+                                                }
+                                            );
+                                            setIsloading(false);
+                                        } catch (err) {}
+                                        props.onDeletePost(post.id);
                                     }}
-                                />
+                                />{" "}
+                                {isLoading && <LoadingSpinner asOverlay />}
                             </div>
                         );
                     })}
-            </div>
-            <div className="admin-dashboard__pagination">
-                <Pagination
-                    postsPerPage={postsPerPage}
-                    totalPosts={loadedPosts.length}
-                    paginate={paginate}
-                />
             </div>
         </React.Fragment>
     );

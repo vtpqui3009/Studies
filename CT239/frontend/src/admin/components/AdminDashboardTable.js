@@ -52,7 +52,7 @@ const AdminDashboardTable = () => {
                                 key={user.id}
                             >
                                 <AdminDashboardTableItem
-                                    text={user.id.substr(0, 4)}
+                                    text={user.id.substr(0, 8)}
                                 />
                                 <AdminDashboardTableItem text={user.name} />
                                 <AdminDashboardTableItem text={user.username} />

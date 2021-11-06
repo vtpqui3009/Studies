@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap");
 .post-detail__wrapper {
     margin-top: 80px;
     padding: 0 200px;
@@ -11,14 +12,19 @@
     margin-bottom: 20px;
 }
 .post-title {
-    font-size: 26px;
-    font-weight: 600;
+    font-size: 32px;
     margin: 40px 0;
+    line-height: 40px;
+    font-family: "Noto Serif", serif;
 }
 .post-desc {
     line-height: 30px;
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: 700;
+    font-size: 20px;
+    font-family: "Noto Serif", serif;
+}
+.post-desc p h2 {
+    font-size: 20px;
 }
 .post-image {
     width: 100%;
@@ -29,8 +35,12 @@
     display: block;
     margin: 20px auto;
 }
+.post-content p:not(:last-child) {
+    margin-bottom: 20px;
+}
 .post-content p {
-    line-height: 30px;
+    line-height: 38px;
+    font-weight: normal;
 }
 .post-author {
     font-weight: 600;

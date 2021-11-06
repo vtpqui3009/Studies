@@ -27,6 +27,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     margin-bottom: 10px;
+    font-size: 16px;
 }
 .title > input:focus,
 .author > input:focus {

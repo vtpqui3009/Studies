@@ -8,7 +8,7 @@ const PostDetail = () => {
     const publicURL = "http://localhost:5000/";
     const location = useLocation();
     const path = location.pathname.split("/")[2];
-    const [detailPostData, setDetailPostData] = useState({});
+    const [detailPostData, setDetailPostData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         const getSinglePost = async () => {
@@ -18,6 +18,7 @@ const PostDetail = () => {
                     "http://localhost:5000/api/posts/" + path
                 );
                 const responseData = await res.json();
+                console.log(responseData);
                 setDetailPostData(responseData.post);
                 setIsLoading(false);
             } catch (err) {

@@ -1,27 +1,24 @@
 import React, { useState, useEffect } from "react";
-import "./Select.css";
 import Form from "react-bootstrap/Form";
+import axios from "axios";
+import "./Select.css";
 const Select = (props) => {
     const [loadedCategories, setLoadedCategory] = useState([]);
     useEffect(() => {
         const getLoadedCategories = async () => {
             try {
-                const response = await fetch(
+                const response = await axios.get(
                     "http://localhost:5000/api/category/all-category"
                 );
-                // console.log(response);
-                if (!response.ok) {
-                    throw new Error(response.message);
-                }
-                const responseData = await response.json();
-                // console.log(responseData);
-                setLoadedCategory(responseData.category);
-            } catch (err) {
-                console.log(err);
-            }
+                const responseData = await response.data.category;
+                setLoadedCategory(responseData);
+            } catch (err) {}
         };
         getLoadedCategories();
     }, []);
+    const filterCategory = loadedCategories.filter(
+        (category) => category.isApproved === "Approved"
+    );
     return (
         <div>
             <p> Chọn danh mục :</p>
@@ -32,8 +29,8 @@ const Select = (props) => {
                 id="select"
             >
                 <option>Chọn danh mục</option>
-                {loadedCategories.length > 0 &&
-                    loadedCategories.map((categories) => {
+                {filterCategory.length > 0 &&
+                    filterCategory.map((categories) => {
                         return (
                             <option
                                 value={categories.name}

@@ -1,0 +1,36 @@
+.admin-dashboard__notification {
+    position: relative;
+}
+
+.noti-icon {
+    position: relative;
+    font-size: 20px;
+}
+.noti-panel {
+    font-size: 14px;
+    padding: 20px;
+    left: -200px;
+    width: 14rem;
+    position: absolute;
+    top: 20px;
+    background-color: #ffffff;
+}
+.noti-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99;
+}
+.badge {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    font-size: 10px;
+    background-color: #ec0000;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 50%;
+    font-weight: 600;
+}

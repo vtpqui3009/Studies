@@ -21,7 +21,6 @@ const createNewPost = async (req, res, next) => {
     );
     return next(error);
   }
-
   res.status(201).json({ createdPost });
 };
 //UPDATE POST
@@ -77,14 +76,10 @@ const deletePost = async (req, res, next) => {
 const getAllPost = async (req, res, next) => {
   let posts;
   try {
-    // console.log(req.query);
-    // Filtering catName
     if (req.query.catName) {
       posts = await Post.find().where("category").equals(req.query.catName);
     } else if (req.query.sort) {
       posts = await Post.find().sort({ createdAt: -1 });
-      // console.log(new Date("2021-10-27T01:35:25.971Z").toLocaleString());
-      // console.log(new Date("2021-10-26T14:14:07.855Z").toLocaleString());
     } else {
       posts = await Post.find();
     }
@@ -114,9 +109,10 @@ const getPostById = async (req, res, next) => {
   }
   res.json({ post });
 };
-exports.updatePostStatus = updatePostStatus;
+
+exports.createNewPost = createNewPost;
 exports.getAllPost = getAllPost;
 exports.getPostById = getPostById;
-exports.createNewPost = createNewPost;
 exports.updatePost = updatePost;
 exports.deletePost = deletePost;
+exports.updatePostStatus = updatePostStatus;

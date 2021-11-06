@@ -6,7 +6,8 @@ import { AuthContext } from "../../context/auth-context";
 import SearchBar from "../FormElement/SearchBar";
 import axios from "axios";
 import "./MainNavigation.css";
-const MainNavigation = () => {
+
+const MainNavigation = (props) => {
     const [didMount, setDidMount] = useState(false);
     const auth = useContext(AuthContext);
     const [backdrop, openBackdrop] = useState(false);
@@ -14,6 +15,7 @@ const MainNavigation = () => {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const [loadedAvatar, setLoadedAvatar] = useState("");
     const publicURL = "http://localhost:5000/";
+
     const openMenuDropdown = () => {
         setOpenMenu(true);
         openBackdrop(true);
@@ -22,6 +24,7 @@ const MainNavigation = () => {
         openBackdrop(false);
         setOpenMenu(false);
     };
+
     let avatar;
     if (auth.isLoggedIn) {
         const fetchAvatar = async () => {
@@ -35,7 +38,8 @@ const MainNavigation = () => {
         };
         fetchAvatar();
         avatar = (
-            <React.Fragment>
+            <div className="main-navigation-more">
+                <div className="notification"> {props.noti}</div>
                 <div className="auth-shortcut">
                     <img
                         className="image-information"
@@ -64,7 +68,7 @@ const MainNavigation = () => {
                         </div>
                     )}
                 </div>
-            </React.Fragment>
+            </div>
         );
     } else {
         avatar = (
@@ -90,6 +94,7 @@ const MainNavigation = () => {
                     </Link>
                 </div>
                 <SearchBar />
+
                 {avatar}
             </MainHeader>
         </Fragment>

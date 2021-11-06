@@ -1,8 +1,9 @@
 .admin-dashboard__view-form {
     width: 40rem;
     /* width: 100%; */
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
+    height: 100vh;
 }
 .admin-dashboard__view-item * {
     font-size: 14px;

@@ -54,9 +54,6 @@
     display: flex;
     align-items: center;
 }
-.admin-dashboard__more div {
-    margin-right: 20px;
-}
 .admin-dashboard__search {
     position: relative;
 }
@@ -76,6 +73,9 @@
     right: 5%;
     font-size: 18px;
     cursor: pointer;
+}
+.admin-dashboard__notification {
+    margin: 0 20px;
 }
 .admin-dashboard__notification,
 .admin-dashboard__avatar {

@@ -39,11 +39,7 @@ const MenuToogleAdmin = () => {
                         onClick={closeBackdropHandler}
                     ></div>
                     <div className="menu-toggle__content">
-                        <NavLink to="/admin">Admin Dashboard</NavLink>
-
-                        <NavLink to="/admin/pending-post">
-                            Bài viết đang chờ
-                        </NavLink>
+                        <NavLink to="/admin">Bài viết đang chờ</NavLink>
                         <NavLink to="/admin/pending-category">
                             Danh mục đang chờ
                         </NavLink>

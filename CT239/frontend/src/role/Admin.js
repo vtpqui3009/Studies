@@ -5,9 +5,14 @@ import Sidebar from "../shared/components/sidebar-nav/SideBar";
 import AdminSystemPage from "../sys-admin/pages/AdminSystemPage";
 import AdminPendingCategoryPage from "../admin/components/AdminPendingCategoryPage";
 import ViewPost from "../admin/pages/ViewPost";
+import ViewCategory from "../admin/pages/ViewCategory";
 const Admin = () => {
     return (
         <React.Fragment>
+            {" "}
+            <Route path="/view-category/:cid" exact>
+                <ViewCategory />
+            </Route>
             <Route path="/admin" exact>
                 <AdminSystemPage />
             </Route>

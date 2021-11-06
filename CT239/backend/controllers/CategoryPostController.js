@@ -105,6 +105,23 @@ const deleteCategoryPost = async (req, res, next) => {
     res.status(500).json(err);
   }
 };
+const updateCategoryStatus = async (req, res) => {
+  try {
+    const updateCategoryStatus = await Category.findByIdAndUpdate(
+      req.params.cid,
+      {
+        $set: {
+          isApproved: req.body.isApproved,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(updateCategoryStatus);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+exports.updateCategoryStatus = updateCategoryStatus;
 exports.createNewCategoryPost = createNewCategoryPost;
 exports.getAllCategory = getAllCategory;
 exports.getCategoryPostById = getCategoryPostById;

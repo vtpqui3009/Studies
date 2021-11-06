@@ -8,6 +8,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { AuthContext } from "../../../shared/context/auth-context";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
+import axios from "axios";
 import "./UpdatePost.css";
 const UpdatePost = () => {
     const { error, sendRequest, clearError } = useHttpClient();
@@ -24,16 +25,17 @@ const UpdatePost = () => {
         const fetchPost = async () => {
             setIsLoading(true);
             try {
-                const responseData = await sendRequest(
+                const response = await axios.get(
                     "http://localhost:5000/api/posts/" + path
                 );
-                setLoadedPost(responseData.post);
-                setTitle(responseData.post.title);
+                const responseData = await response.data.post;
+                setLoadedPost(responseData);
+                setTitle(responseData.title);
                 setIsLoading(false);
             } catch (err) {}
         };
         fetchPost();
-    }, [sendRequest, path]);
+    }, [auth.token, path]);
     const postUpdateSubmitHandler = async (event) => {
         event.preventDefault();
         try {
@@ -74,7 +76,7 @@ const UpdatePost = () => {
                 {loadedPost && (
                     <React.Fragment>
                         <div className="title">
-                            <label htmlFor="title">Tên danh mục :</label>
+                            <label htmlFor="title">Tiêu đề :</label>
                             <input
                                 type="text"
                                 value={title}

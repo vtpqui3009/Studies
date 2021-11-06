@@ -15,11 +15,11 @@ const PostSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   content: { type: String, required: true },
-  image: { type: String, required: false },
+  image: { type: String, required: true },
   slug: { type: String, slug: ["title"], unique: true },
+  author: { type: String, required: true },
   category: { type: String, required: true, unique: true },
-  author: { type: String, required: false },
-  isApproved: { type: String, required: true, default: "UnApproved" },
+  isApproved: { type: String, required: false, default: "UnApproved" },
 });
 PostSchema.set("timestamps", true);
 module.exports = mongoose.model("Post", PostSchema);

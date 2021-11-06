@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import AdminDashboardTableItem from "./AdminDashboardTableItem";
-import axios from "axios";
 import Pagination from "../../shared/components/Pagination/Pagination";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
-
-const AdminDashboardTable = () => {
+import { AuthContext } from "../../shared/context/auth-context";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { Link } from "react-router-dom";
+import axios from "axios";
+const AdminDashboardTable = (props) => {
+    const { sendRequest } = useHttpClient();
     const [loadedCategories, setLoadedCategories] = useState([]);
     const [isLoading, setIsloading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [categoryPerPage] = useState(3);
+    const auth = useContext(AuthContext);
     useEffect(() => {
         const fetchUsers = async () => {
             setIsloading(true);
-            const response = await axios.get(
-                "http://localhost:5000/api/category/all-category"
-            );
-            const responseData = await response.data.category;
-            setLoadedCategories(responseData);
-            console.log(responseData);
-            setIsloading(false);
+            try {
+                const response = await axios.get(
+                    "http://localhost:5000/api/category/all-category"
+                );
+                const responseData = await response.data.category;
+                setLoadedCategories(responseData);
+                setIsloading(false);
+            } catch (err) {}
         };
         fetchUsers();
     }, []);
@@ -39,7 +44,7 @@ const AdminDashboardTable = () => {
                     <AdminDashboardTableItem text="Tên" />
                     <AdminDashboardTableItem text="Slug" />
                     <AdminDashboardTableItem text="Ngày tạo" />
-                    <AdminDashboardTableItem text="Ngày sửa" />
+                    <AdminDashboardTableItem text="Trạng thái" />
                     <AdminDashboardTableItem text="Xem" />
                     <AdminDashboardTableItem text="Duyệt" />
                     <AdminDashboardTableItem text="Xóa" />
@@ -48,9 +53,12 @@ const AdminDashboardTable = () => {
                 {currentCategory &&
                     currentCategory.map((categories) => {
                         return (
-                            <div className="admin-dashboard__table-content">
+                            <div
+                                className="admin-dashboard__table-content"
+                                key={categories.id}
+                            >
                                 <AdminDashboardTableItem
-                                    text={categories.id.substr(0, 4)}
+                                    text={categories.id.substr(0, 8)}
                                 />
                                 <AdminDashboardTableItem
                                     text={categories.name}
@@ -59,25 +67,97 @@ const AdminDashboardTable = () => {
                                     text={categories.slug}
                                 />
                                 <AdminDashboardTableItem
-                                    text={categories.createdAt}
+                                    text={new Date(
+                                        categories.createdAt
+                                    ).toLocaleString()}
                                 />
                                 <AdminDashboardTableItem
-                                    text={categories.updatedAt}
+                                    text={categories.isApproved}
                                 />
                                 <AdminDashboardTableItem
                                     text={
-                                        <ion-icon name="eye-outline"></ion-icon>
+                                        <Link
+                                            to={`/view-category/${categories.id}`}
+                                        >
+                                            {" "}
+                                            <ion-icon
+                                                name="eye-outline"
+                                                style={{
+                                                    color: "blue",
+                                                    fontSize: "18px",
+                                                    pointerEvent: "none"
+                                                }}
+                                            ></ion-icon>
+                                        </Link>
                                     }
                                 />
                                 <AdminDashboardTableItem
                                     text={
-                                        <ion-icon name="pencil-outline"></ion-icon>
+                                        <ion-icon
+                                            name="checkmark-outline"
+                                            style={{
+                                                color: "green",
+                                                fontSize: "18px",
+                                                pointerEvent: "none"
+                                            }}
+                                        ></ion-icon>
                                     }
+                                    onClick={async () => {
+                                        if (
+                                            categories.isApproved !== "Approved"
+                                        ) {
+                                            categories.isApproved = "Approved";
+                                        }
+                                        setIsloading(true);
+                                        try {
+                                            await sendRequest(
+                                                "http://localhost:5000/api/category/update/status/" +
+                                                    categories.id,
+                                                "PATCH",
+                                                {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                    Authorization:
+                                                        "Bearer " + auth.token
+                                                },
+                                                JSON.stringify({
+                                                    isApproved:
+                                                        categories.isApproved
+                                                })
+                                            );
+                                            setIsloading(false);
+                                        } catch (err) {}
+                                    }}
                                 />
                                 <AdminDashboardTableItem
                                     text={
-                                        <ion-icon name="close-outline"></ion-icon>
+                                        <ion-icon
+                                            name="close-outline"
+                                            style={{
+                                                color: "red",
+                                                fontSize: "18px",
+                                                pointerEvent: "none"
+                                            }}
+                                        ></ion-icon>
                                     }
+                                    onClick={async () => {
+                                        setIsloading(true);
+                                        try {
+                                            await sendRequest(
+                                                "http://localhost:5000/api/category/delete/" +
+                                                    categories.id,
+                                                "DELETE",
+                                                {
+                                                    "Content-Type":
+                                                        "application/json",
+                                                    Authorization:
+                                                        "Bearer " + auth.token
+                                                }
+                                            );
+                                            setIsloading(false);
+                                        } catch (err) {}
+                                        props.onDeletePost(categories.id);
+                                    }}
                                 />
                             </div>
                         );

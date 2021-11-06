@@ -37,7 +37,7 @@ const AdminPostList = (props) => {
                             <th colSpan="2">Hình ảnh</th>
                             <th>Tác giả</th>
                             <th>Ngày đăng</th>
-                            <th>Status</th>
+                            <th>Trạng thái</th>
 
                             <th colSpan="2">Tác vụ</th>
                         </tr>
@@ -76,7 +76,7 @@ const AdminPostList = (props) => {
                                         ).toLocaleString()}
                                     </td>
                                     <td className="table-post__author">
-                                        {post.status}
+                                        {post.isApproved}
                                     </td>
                                     <td className="table-post__actions">
                                         <Link to={`post/update/${post.id}`}>

@@ -17,14 +17,14 @@ const Author = () => {
             <Route path="/" exact>
                 <HomeRoute />
             </Route>
-            <Route path="/add-post" exact>
-                <AddPostRoute />
+            <Route path="/post/:postId" exact>
+                <PostDetailRoute />
             </Route>
             <Route path="/manage-post" exact>
                 <ManagePostRoute />
             </Route>
-            <Route path="/post/:postId" exact>
-                <PostDetailRoute />
+            <Route path="/add-post" exact>
+                <AddPostRoute />
             </Route>
             <Route path="/post/update/:postId" exact>
                 <UpdatePostRoute />

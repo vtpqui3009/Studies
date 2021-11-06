@@ -7,7 +7,7 @@ mongoose.plugin(slug);
 const CategorySchema = new Schema({
   name: { type: String, required: true },
   slug: { type: String, slug: ["name"], unique: true },
-  // posts: [{ type: mongoose.Types.ObjectId, required: false, ref: "Post" }],
+  isApproved: { type: String, required: true, default: "UnApproved" },
 });
 CategorySchema.set("timestamps", true);
 module.exports = mongoose.model("Category", CategorySchema);

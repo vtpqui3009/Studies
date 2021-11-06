@@ -29,10 +29,13 @@ const ThreePostItem = () => {
     if (!didMount) {
         return null;
     }
+    const filterPost = loadedPosts.filter(
+        (post) => post.isApproved === "Approved"
+    );
     //Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = loadedPosts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <PostWrapper
             className="three-post_item1"

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react";
 import LatestPostLayout from "./LatestPostLayout";
 import PostWrapper from "../PostWrapper";
 import axios from "axios";
-// import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
 import "./LatestPost.css";
 const LatestPost = () => {
     const [loadedPosts, setLoadedPosts] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
     const [currentPage] = useState(1);
     const [postsPerPage] = useState(8);
     const [didMount, setDidMount] = useState(false);
@@ -14,13 +12,11 @@ const LatestPost = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                // setIsLoading(true);
                 const response = await axios.get(
                     "http://localhost:5000/api/posts/?sort=createdAt"
                 );
                 const responseData = await response.data.posts;
                 setLoadedPosts(responseData);
-                // setIsLoading(false);
             } catch (err) {}
         };
         fetchPost();
@@ -30,6 +26,9 @@ const LatestPost = () => {
         setDidMount(true);
         return () => setDidMount(false);
     }, []);
+    const filterPost = loadedPosts.filter(
+        (post) => post.isApproved === "Approved"
+    );
 
     if (!didMount) {
         return null;
@@ -37,10 +36,9 @@ const LatestPost = () => {
     //Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = loadedPosts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <React.Fragment>
-            {/* {isLoading && <LoadingSpinner asOverlay />} */}
             <PostWrapper
                 className="latest-post"
                 classCaption="latest-post__caption"

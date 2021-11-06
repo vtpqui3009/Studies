@@ -8,7 +8,7 @@ const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true, minLength: 8 },
   avatar: { type: String, default: "" },
-  role: { type: String, required: true, default: "" },
+  role: { type: String, required: false, default: "author" },
 });
 UserSchema.plugin(uniqueValidator);
 UserSchema.set("timestamps", true);

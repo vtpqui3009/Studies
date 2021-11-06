@@ -8,6 +8,11 @@ const checkAuth = require("../middleware/check-auth");
 
 router.get("/all-category", CategoryPostController.getAllCategory);
 
+router.patch(
+  "/update/status/:cid",
+  CategoryPostController.updateCategoryStatus
+);
+
 router.get("/:cid", CategoryPostController.getCategoryPostById);
 
 router.use(checkAuth);

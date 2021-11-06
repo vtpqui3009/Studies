@@ -26,6 +26,9 @@ const Menu = () => {
     if (!didMount) {
         return null;
     }
+    const filterCategory = loadedCategories.filter(
+        (category) => category.isApproved === "Approved"
+    );
     return (
         <ul className="menu">
             <li>
@@ -33,9 +36,9 @@ const Menu = () => {
                     <ion-icon name="home-outline"></ion-icon>
                 </NavLink>
             </li>
-            {loadedCategories &&
-                loadedCategories.length > 0 &&
-                loadedCategories.map((categories) => {
+            {filterCategory &&
+                filterCategory.length > 0 &&
+                filterCategory.map((categories) => {
                     return (
                         <li key={categories.id}>
                             <NavLink

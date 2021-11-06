@@ -60,7 +60,7 @@
     position: absolute;
     right: 80%;
     bottom: 100%;
-    width: 10rem;
+    width: 12rem;
     border-radius: 4px;
     font-size: 15px;
     display: flex;
@@ -68,7 +68,12 @@
     transition: all 0.3s;
     background-color: #fff;
     z-index: 9999;
+    padding: 5px;
 }
+/* .menu-toggle__content a {
+    padding: 10px 0;
+    width: auto;
+} */
 .menu-link {
     padding: 10px;
     transition: all 0.3s;
