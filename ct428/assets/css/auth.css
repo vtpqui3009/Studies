@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 0 10px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+.header-logo {
+  font-family: "Ubuntu", sans-serif;
+  letter-spacing: 0.5;
+  font-size: 32px;
+  font-style: italic;
+}
+.header-logo a {
+  text-decoration: none;
+  color: black;
+}
+.header-nav {
+  margin-top: 1%;
+}
+.header-auth {
+  cursor: pointer;
+  margin-left: auto;
+}
+.header-auth a ion-icon {
+  font-size: 20px;
+  color: black;
+  transition: 0.25s ease-in-out;
+  margin-right: 10px;
+}
+.nav-list {
+  display: flex;
+  margin-left: 4rem;
+}
+.nav-item {
+  margin-right: 2rem;
+}
+a.nav-link {
+  color: gray;
+  text-transform: uppercase;
+  font-size: 18px;
+  transition: 0.25s ease-in-out;
+}
+a.nav-link:hover,
+.header-auth a ion-icon:hover {
+  color: #eb7100;
+}
+.form-wrapper {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login-form {
+  border-radius: 4px;
+  padding: 40px;
+  width: 35rem;
+  display: flex;
+  border: 1px solid #ccc;
+  justify-content: center;
+  flex-direction: column;
+}
+.register-form {
+  border-radius: 4px;
+  width: 70rem;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.register-form__col {
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+.register-form__col-1 {
+  margin-right: 20px;
+}
+.register-form__col-1,
+.register-form__col-2 {
+  width: 50%;
+}
+.register-form button {
+  width: 480px;
+}
+.message {
+  margin-top: 20px;
+  text-align: center;
+}

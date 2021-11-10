@@ -1,0 +1,228 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Ubuntu", sans-serif;
+}
+body.active {
+    filter: invert(1) hue-rotate(180deg);
+    background-color: black;
+}
+body.active .sidebar,
+body.active .header .header-home a {
+    color: white;
+    filter: invert(1) hue-rotate(180deg);
+}
+body.active .panel-content__table,
+body.active .employee-form,
+body.active .product-form {
+    background-color: #fff;
+    filter: invert(1) hue-rotate(180deg);
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15%;
+    border-right: 1px solid #ccc;
+    height: 100vh;
+    z-index: 999;
+    /*margin-right: 15%;*/
+}
+.sidebar-item,
+.sidebar-accordion__header {
+    padding: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease-in-out;
+    border-radius: 2px;
+    text-decoration: none;
+    color: black;
+}
+.sidebar-item {
+    display: block;
+}
+.sidebar-accordion__header * {
+    pointer-events: none;
+}
+.sidebar-accordion__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.sidebar-accordion__header span {
+    margin-right: 10px;
+}
+.sidebar-accordion__content {
+    font-size: 15px;
+    height: 0;
+    overflow: hidden;
+    transition: all 0.25s ease-in-out;
+    border-left: 1px solid #ccc;
+}
+.sidebar-accordion__content.is-active {
+    height: auto;
+}
+.sidebar-accordion__icon {
+    font-size: 18px;
+    transition: all 0.25s ease-in-out;
+}
+.sidebar-accordion__icon.active {
+    transform: rotate(45deg);
+}
+.sidebar-item:hover {
+    background-color: #ccc;
+}
+.sidebar-item.active {
+    background-color: #0d6efd;
+    color: white;
+    pointer-events: none;
+}
+.sidebar-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+.sidebar-logo img {
+    width: 150px;
+    height: 60px;
+    color: #0d6efd;
+    object-fit: cover;
+    background-attachment: fixed;
+}
+
+/* .header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%;
+    margin-left: 15%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    background-color: white;
+    margin-bottom: 10%;
+} */
+.header-home a {
+    text-decoration: none;
+}
+.header-home a:hover {
+    color: black;
+}
+.header-more {
+    display: flex;
+    align-items: center;
+}
+.switch-mode {
+    margin-right: 20px;
+    display: flex;
+}
+
+.switch-mode .switch-mode__button {
+    cursor: pointer;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    width: 70px;
+    height: 40px;
+}
+.switch-mode .switch-mode__button span {
+    margin-right: 5px;
+    font-size: 14px;
+}
+.switch-mode .switch-mode__button:nth-child(2) {
+    display: none;
+}
+.switch-mode.active .switch-mode__button:first-child {
+    display: none;
+}
+.switch-mode.active .switch-mode__button:nth-child(2) {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.panel {
+    margin-top: 60px;
+    padding: 40px 0;
+    z-index: 0;
+    /*position: relative;*/
+}
+.panel-content {
+    width: 60rem;
+    display: none;
+    margin-top: 2%;
+    /*margin-left: 5%;*/
+}
+.panel-content.active {
+    display: block;
+}
+.panel-content__greeting {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    background-color: #5f99f0;
+    color: white;
+    margin-top: 10%;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    margin-left: 19%;
+    width: 77%;
+}
+.panel-content__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 600;
+}
+.panel-content__table {
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    border-radius: 4px;
+}
+.product-image {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.employee-form,
+.product-form {
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+.product-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-40%, -50%);
+}
+.employee-form__header h2,
+.product-form__header h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.employee-form {
+    margin-bottom: 40px;
+    width: 40rem;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-35%, -20%);
+}

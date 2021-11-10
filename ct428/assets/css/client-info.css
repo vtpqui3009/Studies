@@ -1,0 +1,22 @@
+.form-info {
+    width: 30rem;
+    margin: 120px auto;
+}
+.form-info > .mb-3:last-child {
+    resize: none;
+}
+.button-info {
+    display: block;
+    padding: 10px 30px;
+    font-weight: 600;
+    border: 1px solid #eee;
+    background-color: #eb7100;
+    color: white;
+    border-radius: 4px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+.form-info__heading {
+    font-size: 24px;
+    text-align: center;
+}

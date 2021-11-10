@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: "Ubuntu", sans-serif;
+}
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 85%;
+    margin-left: 15%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    z-index: 999;
+    background-color: white;
+    margin-bottom: 10%;
+}
+.header-home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-home a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+.header-home div {
+    margin-right: 10px;
+}
+.header-home a:hover {
+    color: black;
+}
+.header-more {
+    display: flex;
+    align-items: center;
+}
+.employee-form,
+.product-form {
+    border-radius: 4px;
+    margin: 100px auto;
+    padding: 40px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.25);
+    width: 50rem;
+}
+.product-form__header h2,
+.employee-form__header h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
