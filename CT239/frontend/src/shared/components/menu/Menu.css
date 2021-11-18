@@ -1,5 +1,5 @@
 .menu {
-    margin: 140px 100px -40px 105px;
+    margin-top: 140px;
     list-style: none;
     display: flex;
     border-top: 2px solid #ec0000;
@@ -7,6 +7,11 @@
     border-left: 1px solid #eee;
     border-bottom: 1px solid #eee;
     background-color: #fff;
+}
+@media (max-width: 992px) {
+    .menu {
+        display: none;
+    }
 }
 .menu li {
     text-align: center;

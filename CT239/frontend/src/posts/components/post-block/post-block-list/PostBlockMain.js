@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from "react";
 import PostBlockLayout from "./PostBlockLayout";
-import PostWrapper from "../../PostWrapper";
-import LoadingSpinner from "../../../../shared/components/UIElements/LoadingSpinner";
 import axios from "axios";
+import GlobalPostHeading from "../../post-item/GlobalPostHeading";
+
 const PostBlockMain = () => {
     const [loadedPosts, setLoadedPosts] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
     const [currentPage] = useState(1);
     const [postsPerPage] = useState(5);
     const [didMount, setDidMount] = useState(false);
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                setIsLoading(true);
                 const response = await axios.get(
                     "http://localhost:5000/api/posts/?catName=Thế giới"
                 );
                 const responseData = await response.data.posts;
                 setLoadedPosts(responseData);
-                setIsLoading(false);
             } catch (err) {}
         };
         fetchPost();
@@ -40,15 +37,8 @@ const PostBlockMain = () => {
     const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <React.Fragment>
-            {isLoading && <LoadingSpinner asOverlay />}
-            <PostWrapper
-                className="post-block__item1"
-                classCaption="post-block__caption1"
-                classPostCategory="post-block____category1"
-                postCategory="VĂN HÓA"
-            >
-                <PostBlockLayout postBLockList={currentPosts} />
-            </PostWrapper>
+            <GlobalPostHeading list heading="THẾ GIỚI" />
+            <PostBlockLayout postBLockList={currentPosts} />
         </React.Fragment>
     );
 };

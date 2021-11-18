@@ -1,23 +1,33 @@
 import React from "react";
-import PostItem from "../PostItem";
-import HtmlParser from "react-html-parser";
+import GlobalPostImage from "../post-item/GlobalPostImage";
+import GlobalPostTitle from "../post-item/GlobalPostTitle";
+import GlobalPostMore from "../post-item/GlobalPostMore";
+import { StyledPostContent, StyledFeaturedPostCol } from "../GlobalPostStyled";
+import { Col } from "react-bootstrap";
 const FeaturedPostLayout = (props) => {
     return (
-        <ul className="post-list">
+        <StyledFeaturedPostCol>
             {props.featuredPost.map((post) => {
                 return (
-                    <PostItem
-                        key={post.id}
-                        id={post.id}
-                        category={post.category}
-                        image={post.image}
-                        title={HtmlParser(post.title)}
-                        author={HtmlParser(post.author)}
-                        createdAt={post.createdAt}
-                    />
+                    <Col key={post.id} className="mb-3">
+                        <GlobalPostImage
+                            id={post.id}
+                            image={post.image}
+                            category={post.category}
+                            feature
+                        />
+                        <StyledPostContent feature>
+                            <GlobalPostTitle id={post.id} title={post.title} />
+                            <GlobalPostMore
+                                author={post.author}
+                                createdAt={post.createdAt}
+                                background
+                            />
+                        </StyledPostContent>
+                    </Col>
                 );
             })}
-        </ul>
+        </StyledFeaturedPostCol>
     );
 };
 export default FeaturedPostLayout;

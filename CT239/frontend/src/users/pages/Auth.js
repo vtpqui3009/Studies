@@ -102,12 +102,15 @@ const Auth = () => {
         return null;
     }
     return (
-        <div className="container">
+        <div className="auth">
             <ErrorModal error={error} onClear={clearError} />
-            <div className="form">
+            <div className="auth-form">
                 {isLoading && <LoadingSpinner asOverlay />}
-                <span className="form-title">Welcome</span>
-                <form onSubmit={authSubmitHandler} className="form-control">
+                <span className="form-title">Welcome </span>
+                <form
+                    onSubmit={authSubmitHandler}
+                    className="auth-form__control"
+                >
                     {!isLoginMode && (
                         <React.Fragment>
                             <ImageUpload

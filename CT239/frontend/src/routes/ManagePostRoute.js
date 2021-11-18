@@ -1,12 +1,12 @@
 import React from "react";
 import SideBar from "../shared/components/sidebar-nav/SideBar";
-import NewPost from "../posts/pages/NewPost";
+import ManagePost from "../posts/pages/ManagePost";
 import MainNavigation from "../shared/components/navigation/MainNavigation";
 const ManagePostRoute = () => {
     return (
         <React.Fragment>
             <MainNavigation />
-            <NewPost />
+            <ManagePost />
             <SideBar />
         </React.Fragment>
     );

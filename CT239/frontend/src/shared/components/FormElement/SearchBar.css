@@ -10,7 +10,8 @@
     padding: 18px;
     margin-top: 10px;
     height: 30px;
-    width: 30rem;
+    width: 100%;
+    position: relative;
 }
 input:focus {
     outline: none;
@@ -38,7 +39,7 @@ input:focus {
 }
 
 .dataResult a p {
-    padding: 10px;
+    padding: 5px;
 }
 .dataResult a p:hover {
     background-color: #ccc;

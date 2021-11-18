@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import LatestPostLayout from "./LatestPostLayout";
-import PostWrapper from "../PostWrapper";
+import GlobalPostHeading from "../post-item/GlobalPostHeading";
 import axios from "axios";
-import "./LatestPost.css";
 const LatestPost = () => {
     const [loadedPosts, setLoadedPosts] = useState([]);
     const [currentPage] = useState(1);
     const [postsPerPage] = useState(8);
     const [didMount, setDidMount] = useState(false);
-
     useEffect(() => {
         const fetchPost = async () => {
             try {
@@ -39,14 +37,8 @@ const LatestPost = () => {
     const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
     return (
         <React.Fragment>
-            <PostWrapper
-                className="latest-post"
-                classCaption="latest-post__caption"
-                classPostCategory="latest-post__category"
-                postCategory="TIN MỚI NHẤT"
-            >
-                <LatestPostLayout latestPosts={currentPosts} />
-            </PostWrapper>
+            <GlobalPostHeading latest heading="TIN MỚI NHẤT" />
+            <LatestPostLayout latestPosts={currentPosts} />
         </React.Fragment>
     );
 };

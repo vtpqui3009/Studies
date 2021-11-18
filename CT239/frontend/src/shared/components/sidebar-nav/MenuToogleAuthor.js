@@ -39,19 +39,39 @@ const MenuToogleAuthor = () => {
                         onClick={closeBackdropHandler}
                     ></div>
                     <div className="menu-toggle__content">
-                        <Link to="/" className="menu-link">
+                        <Link
+                            to="/"
+                            className="menu-link"
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
                             Trang chủ
                         </Link>
-                        <Link to="/add-post" className="menu-link">
+                        <Link
+                            to="/add-post"
+                            className="menu-link"
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
                             Thêm bài viết
                         </Link>
-                        <Link to="/add-category" className="menu-link">
+                        <Link
+                            to="/add-category"
+                            className="menu-link"
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
                             Thêm danh mục
                         </Link>
-                        <Link to="/manage-post" className="menu-link">
+                        <Link
+                            to="/manage-post"
+                            className="menu-link"
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
                             Quản lý bài viết
                         </Link>
-                        <Link to="/manage-category" className="menu-link">
+                        <Link
+                            to="/manage-category"
+                            className="menu-link"
+                            style={{ color: "black", textDecoration: "none" }}
+                        >
                             Quản lý danh mục
                         </Link>
                     </div>

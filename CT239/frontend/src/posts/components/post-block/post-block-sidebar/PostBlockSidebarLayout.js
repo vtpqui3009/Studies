@@ -1,23 +1,39 @@
 import React from "react";
-import HtmlParser from "react-html-parser";
-import PostItem from "../../PostItem";
+import GlobalPostImage from "../../post-item/GlobalPostImage";
+import GlobalPostTitle from "../../post-item/GlobalPostTitle";
+import GlobalPostMore from "../../post-item/GlobalPostMore";
+import {
+    StyledPostContent,
+    StyledPostBlockSidebar
+} from "../../GlobalPostStyled";
+import { Col } from "react-bootstrap";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const PostBlockSidebarLayout = (props) => {
+    Aos.init();
     return (
-        <ul className="post-list">
+        <StyledPostBlockSidebar className="col" data-aos="fade-left">
             {props.postsSidebar.map((post) => {
                 return (
-                    <PostItem
-                        key={post.id}
-                        id={post.id}
-                        category={post.category}
-                        image={post.image}
-                        title={HtmlParser(post.title)}
-                        author={post.author}
-                        createdAt={post.createdAt}
-                    />
+                    <Col key={post.id} xs={12}>
+                        <GlobalPostImage
+                            id={post.id}
+                            image={post.image}
+                            category={post.category}
+                            latest
+                        />
+                        <StyledPostContent>
+                            <GlobalPostTitle id={post.id} title={post.title} />
+                            <GlobalPostMore
+                                author={post.author}
+                                createdAt={post.createdAt}
+                                normal
+                            />
+                        </StyledPostContent>
+                    </Col>
                 );
             })}
-        </ul>
+        </StyledPostBlockSidebar>
     );
 };
 export default PostBlockSidebarLayout;

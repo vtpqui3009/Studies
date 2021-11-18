@@ -76,7 +76,7 @@
     position: relative;
     cursor: pointer;
 }
-.auth-shortcut > .dropdown-menu {
+.auth-shortcut > .dropdown-menu__modal {
     flex: 1;
     top: 50px;
     left: -150px;
@@ -86,8 +86,8 @@
     box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
     z-index: 15;
 }
-.auth-shortcut > .dropdown-menu > .dropdown-menu__item,
-.auth-shortcut > .dropdown-menu > .dropdown-menu__item > a {
+.auth-shortcut > .dropdown-menu__modal > .dropdown-menu__item,
+.auth-shortcut > .dropdown-menu__modal > .dropdown-menu__item > a {
     cursor: pointer;
     transition: all 0.25s ease-in-out;
     padding: 10px;
@@ -98,7 +98,7 @@
     color: white;
     border-color: white;
 }
-.auth-shortcut > .dropdown-menu .dropdown-menu__item:not(:last-child) {
+.auth-shortcut > .dropdown-menu__modal .dropdown-menu__item:not(:last-child) {
     border-bottom: 2px solid #ec0000;
 }
 @media (min-width: 768px) {

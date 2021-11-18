@@ -6,8 +6,6 @@ const PostItemImage = (props) => {
             className="post-item__image"
         >
             {props.image && <img src={props.image} alt={props.title} />}
-
-            <div className="post-item__imageWrapper"></div>
         </div>
     );
 };

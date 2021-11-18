@@ -27,7 +27,6 @@ const FilterPostByCategory = () => {
                     "http://localhost:5000/api/posts/" +
                         `?catName=${responseData.category.name}`
                 );
-                console.log(newResponse.data.posts);
                 setPosts(newResponse.data.posts);
                 setIsLoading(false);
             } catch (err) {
@@ -36,11 +35,11 @@ const FilterPostByCategory = () => {
         };
         fetchCategory();
     }, [pathname]);
-
+    const filterPost = posts.filter((post) => post.isApproved === "Approved");
     //Get current posts
     const indexOfLastPost = currentPage * postsPerPage;
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
 
     //Change page
     const paginate = (pageNumber) => {

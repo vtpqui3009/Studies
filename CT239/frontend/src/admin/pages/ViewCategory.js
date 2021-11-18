@@ -1,37 +1,40 @@
 import React, { useState, useEffect } from "react";
-import AdminSystemSidebar from "../../sys-admin/components/AdminSystemSidebar";
+import AdminSidebar from "../components/AdminSidebar";
 import AdminLogo from "../components/AdminLogo";
 import AdminDashboardAvatar from "../components/AdminDashboardAvatar";
 import { useParams } from "react-router";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import { StyledAdminHeading } from "../components/GlobalAdminStyled";
 import "./ViewPost.css";
 
 const ViewCategory = () => {
     const { cid } = useParams();
-    const [loadedPost, setloadedPost] = useState([]);
-    const [isLoading, setIsloading] = useState(false);
+    const [loadedCategories, setLoadedCategories] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const [name, setName] = useState("");
     const [createdAt, setCreatedAt] = useState("");
     const [isApproved, setIsApproved] = useState("");
     const [didMount, setDidMount] = useState(false);
     useEffect(() => {
-        const fetchSingleCategory = async () => {
-            setIsloading(true);
+        const fetchCategory = async () => {
             try {
+                setIsLoading(true);
                 const reponse = axios.get(
                     "http://localhost:5000/api/category/" + cid
                 );
                 const responseData = (await reponse).data.category;
-                setloadedPost(responseData);
+                setLoadedCategories(responseData);
                 setName(responseData.name);
                 setCreatedAt(responseData.createdAt);
                 setIsApproved(responseData.isApproved);
-                setIsloading(false);
-            } catch (err) {}
+                setIsLoading(false);
+            } catch (err) {
+                setIsLoading(false);
+            }
         };
-        fetchSingleCategory();
+        fetchCategory();
     }, [cid]);
     const nameChangedHandler = () => {};
     const createdAtChangedHandler = () => {};
@@ -46,8 +49,7 @@ const ViewCategory = () => {
     }
     return (
         <div className="admin">
-            <AdminSystemSidebar />
-
+            <AdminSidebar />
             <div className="admin-dashboard">
                 <div className="admin-dashboard__heading">
                     <AdminLogo chilren="Dashboard" />
@@ -63,10 +65,11 @@ const ViewCategory = () => {
                     </div>
                 </div>
                 {isLoading && <LoadingSpinner asOverlay />}
-                {loadedPost && (
+                <StyledAdminHeading>Danh mục bài viết</StyledAdminHeading>
+                {loadedCategories && (
                     <div
                         className="admin-dashboard__view-form"
-                        key={loadedPost.id}
+                        key={loadedCategories.id}
                     >
                         <div className="admin-dashboard__view-item">
                             <span>Tên danh mục : </span>

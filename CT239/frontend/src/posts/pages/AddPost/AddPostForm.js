@@ -112,7 +112,9 @@ const AddPostForm = () => {
                     />
                 </div>
                 <Select value={selectValue} onChange={selectChangedHandler} />
-                <Button type="submit">Thêm bài viết</Button>
+                <Button type="submit" style={{ marginTop: 20 }}>
+                    Thêm bài viết
+                </Button>
             </form>
         </React.Fragment>
     );

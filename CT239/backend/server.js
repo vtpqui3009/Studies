@@ -12,6 +12,7 @@ const path = require("path");
 const server = express();
 const mongoose = require("mongoose");
 const { ServerApiVersion } = require("mongodb");
+const nodemailer = require("nodemailer");
 
 server.use(bodyParser.json());
 server.use((req, res, next) => {
@@ -26,9 +27,7 @@ server.use((req, res, next) => {
 server.use("/uploads/images", express.static(path.join("uploads", "images")));
 server.use((error, req, res, next) => {
   if (req.file) {
-    fs.unlink(req.file.path, (err) => {
-      console.log(err);
-    });
+    fs.unlink(req.file.path, (err) => {});
   }
   if (res.headerSent) {
     return next(error);
@@ -36,28 +35,10 @@ server.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({ message: error.message || "An unknown error occurred!" });
 });
-// server.use("/images", express.static(path.join(__dirname, "/images")));
-// const storage = multer.diskStorage({
-//   destination: (req, file, callback) => {
-//     callback(null, "images");
-//   },
-//   filename: (req, file, callback) => {
-//     callback(null, req.body.name);
-//   },
-// });
-// const upload = multer({ storage: storage });
-// server.post("/api/upload", upload.single("file"), (req, res) => {
-//   res.status(200).json("File has been uploaded successfully!");
-// });
 
 server.use("/api/posts", PostRoute);
 server.use("/api/category", CategoryPostRoute);
 server.use("/api/users", AuthRoute);
-
-server.use((req, res, next) => {
-  const error = new HttpError("Could not find this route.");
-  throw error;
-});
 
 mongoose
   .connect(

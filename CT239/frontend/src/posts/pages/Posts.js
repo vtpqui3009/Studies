@@ -6,17 +6,18 @@ import Menu from "../../shared/components/menu/Menu";
 import Footer from "../../shared/pages/Footer";
 import Progress from "../../shared/components/progress/Progress";
 import OnTopButton from "../../shared/components/UIElements/OnTopButton";
+import { Container } from "react-bootstrap";
 const Posts = () => {
     return (
         <React.Fragment>
             <Progress />
-            <Menu />
-            <main style={{ padding: "0 100px 0 40px" }}>
+            <Container style={{ background: "white" }}>
+                <Menu />
                 <FeaturedPosts />
                 <LatestPost />
                 <PostBlock />
-            </main>
-            <Footer />
+                <Footer />
+            </Container>
             <OnTopButton />
         </React.Fragment>
     );

@@ -1,13 +1,13 @@
 import React from "react";
 import SideBar from "../shared/components/sidebar-nav/SideBar";
 import MainNavigation from "../shared/components/navigation/MainNavigation";
-import NewCategory from "../categories/pages/NewCategory";
+import ManageCategory from "../categories/pages/ManageCategory";
 const ManageCategoryRoute = () => {
     return (
         <React.Fragment>
             <MainNavigation />
             <SideBar />
-            <NewCategory />
+            <ManageCategory />
         </React.Fragment>
     );
 };

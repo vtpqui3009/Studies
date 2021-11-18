@@ -1,23 +1,25 @@
 import React from "react";
-import AdminLogo from "./AdminLogo";
-import AdminSidebarItem from "./AdminSidebarItem";
-import { Link } from "react-router-dom";
-const AdminSidebar = () => {
+import AdminSidebarItem from "../../admin/components/AdminSidebarItem";
+import AdminLogo from "../../admin/components/AdminLogo";
+import { NavLink } from "react-router-dom";
+const AdminSystemSidebar = () => {
     return (
         <div className="admin-sidebar">
             <div className="admin-sidebar__logo">
                 <AdminLogo chilren="Dashboard" />
             </div>
             <div className="admin-sidebar__list">
-                <AdminSidebarItem
-                    sidebarText={
-                        <Link to="/sys-admin" style={{ color: "white" }}>
-                            Danh sách User
-                        </Link>
-                    }
-                />
+                <NavLink to="/admin" style={{ textDecoration: "none" }}>
+                    <AdminSidebarItem sidebarText="Bài viết đang chờ" />
+                </NavLink>
+                <NavLink
+                    to="/admin/pending-category"
+                    style={{ textDecoration: "none" }}
+                >
+                    <AdminSidebarItem sidebarText="Danh mục đang chờ" />
+                </NavLink>
             </div>
         </div>
     );
 };
-export default AdminSidebar;
+export default AdminSystemSidebar;

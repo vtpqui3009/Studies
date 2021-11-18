@@ -1,19 +1,23 @@
-import React, { Fragment } from "react";
+import React from "react";
 import PostBlockMain from "./post-block-list/PostBlockMain";
 import PostBlockSidebar from "./post-block-sidebar/PostBlockSidebar";
-import PostBlockWrapper from "./PostBlockWrapper";
 import ThreePostBlock from "./three-post-block/ThreePostBlock";
+import { Row, Col } from "react-bootstrap";
+import { StyledSpacing } from "../GlobalPostStyled";
 const PostBlock = () => {
     return (
-        <Fragment>
-            <PostBlockWrapper className="post-block__wrapper">
-                <PostBlockMain />
-                <PostBlockSidebar />
-            </PostBlockWrapper>
-            <PostBlockWrapper PostBlockWrapper className="three-post__block">
-                <ThreePostBlock />
-            </PostBlockWrapper>
-        </Fragment>
+        <StyledSpacing>
+            <Row>
+                <Col lg={8} md={12} sm={12}>
+                    <PostBlockMain />
+                </Col>
+                <Col lg={4} md={12} sm={12}>
+                    <PostBlockSidebar />
+                </Col>
+            </Row>
+
+            <ThreePostBlock />
+        </StyledSpacing>
     );
 };
 export default PostBlock;

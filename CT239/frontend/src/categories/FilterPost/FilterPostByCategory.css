@@ -1,5 +1,5 @@
 .filter-post__wrapper {
-    padding: 100px;
+    padding: 40px 0;
 }
 .filter-post__list > .filter-post__item:not(:first-child) {
     margin-top: 20px;
@@ -70,4 +70,23 @@
     padding: 2px 4px;
     font-size: 12px;
     border-radius: 4px;
+}
+.filter-post__content > .post-item__more > .post-item__author {
+    /* margin-right: 10px; */
+    border-right: 1px solid #ccc;
+    padding-right: 10px;
+}
+.filter-post__content > .post-item__more > .post-item__date {
+    padding-left: 10px;
+}
+.filter-post__content > .post-item__more > .post-item__author,
+.filter-post__content > .post-item__more > .post-item__date {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filter-post__content > .post-item__more > .post-item__author > ion-icon,
+.filter-post__content > .post-item__more > .post-item__date > ion-icon {
+    color: #ec0000;
+    margin-right: 4px;
 }

@@ -52,22 +52,3 @@ const Author = () => {
     );
 };
 export default Author;
-
-// routes = (
-//     <React.Fragment>
-//         <Route path="/" exact>
-//             <HomeRoute />
-//         </Route>
-//         <Route path="/auth" exact>
-//             <Auth />
-//         </Route>
-//         <Route path="/post/:postId" exact>
-//             <PostDetailRoute />
-//         </Route>
-//         <Route path="/:cid/filter-post" exact>
-//             <FilterPostByCategoryRoute />
-//         </Route>
-//         <Redirect to="/" />
-//     </React.Fragment>
-// );
-// }

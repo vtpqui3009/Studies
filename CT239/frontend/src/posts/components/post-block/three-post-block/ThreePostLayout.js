@@ -1,23 +1,38 @@
 import React from "react";
-import PostItem from "../../PostItem";
-import HtmlParser from "react-html-parser";
+import GlobalPostImage from "../../post-item/GlobalPostImage";
+import GlobalPostTitle from "../../post-item/GlobalPostTitle";
+import GlobalPostMore from "../../post-item/GlobalPostMore";
+import {
+    StyledPostContent,
+    StyledPostBlockSidebar
+} from "../../GlobalPostStyled";
+import { Col } from "react-bootstrap";
+import Aos from "aos";
+import "aos/dist/aos.css";
 const ThreePostLayout = (props) => {
+    Aos.init();
     return (
-        <ul className="post-list">
+        <StyledPostBlockSidebar className="col">
             {props.threePosts.map((post) => {
                 return (
-                    <PostItem
-                        key={post.id}
-                        id={post.id}
-                        category={post.category}
-                        image={post.image}
-                        title={HtmlParser(post.title)}
-                        author={post.author}
-                        createdAt={post.createdAt}
-                    />
+                    <Col xs={12} key={post.id} data-aos="fade-up">
+                        <GlobalPostImage
+                            id={post.id}
+                            image={post.image}
+                            category={post.category}
+                        />
+                        <StyledPostContent>
+                            <GlobalPostTitle id={post.id} title={post.title} />
+                            <GlobalPostMore
+                                author={post.author}
+                                createdAt={post.createdAt}
+                                normal
+                            />
+                        </StyledPostContent>
+                    </Col>
                 );
             })}
-        </ul>
+        </StyledPostBlockSidebar>
     );
 };
 export default ThreePostLayout;

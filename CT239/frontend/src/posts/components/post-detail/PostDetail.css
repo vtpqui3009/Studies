@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap");
 .post-detail__wrapper {
-    margin-top: 80px;
-    padding: 0 200px;
+    margin: 80px 0;
 }
 .post-date {
     margin-left: auto;

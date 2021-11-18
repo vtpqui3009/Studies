@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import PostWrapper from "../../PostWrapper";
 import ThreePostLayout from "./ThreePostLayout";
+import GlobalPostHeading from "../../post-item/GlobalPostHeading";
 import axios from "axios";
+
 const ThreePostItem = () => {
     const [loadedPosts, setLoadedPosts] = useState([]);
     const [currentPage] = useState(1);
@@ -35,14 +36,10 @@ const ThreePostItem = () => {
     const indexOfFirstPost = indexOfLastPost - postsPerPage;
     const currentPosts = filterPost.slice(indexOfFirstPost, indexOfLastPost);
     return (
-        <PostWrapper
-            className="three-post_item1"
-            classCaption="item1-caption"
-            classPostCategory="item1-category"
-            postCategory="THỂ THAO "
-        >
+        <React.Fragment>
+            <GlobalPostHeading sport heading="THỂ THAO" />
             <ThreePostLayout threePosts={currentPosts} />
-        </PostWrapper>
+        </React.Fragment>
     );
 };
 export default ThreePostItem;

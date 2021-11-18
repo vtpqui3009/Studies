@@ -1,12 +1,14 @@
-import React, { Fragment, useContext, useState, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-import MainHeader from "./MainHeader";
+import React, { useContext, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import logo from "./news-logo.png";
 import { AuthContext } from "../../context/auth-context";
 import SearchBar from "../FormElement/SearchBar";
 import axios from "axios";
+import { Navbar, Row, Col } from "react-bootstrap";
+import BarIcon from "./BarIcon";
+import LoginButton from "../FormElement/LoginButton";
+import MainHeader from "./MainHeader";
 import "./MainNavigation.css";
-
 const MainNavigation = (props) => {
     const [didMount, setDidMount] = useState(false);
     const auth = useContext(AuthContext);
@@ -42,10 +44,12 @@ const MainNavigation = (props) => {
                 <div className="notification"> {props.noti}</div>
                 <div className="auth-shortcut">
                     <img
-                        className="image-information"
                         src={publicURL + loadedAvatar}
                         alt="avt"
                         onClick={openMenuDropdown}
+                        width="50"
+                        height="50"
+                        style={{ borderRadius: "50%" }}
                     />
                     {backdrop && (
                         <div
@@ -55,9 +59,17 @@ const MainNavigation = (props) => {
                     )}
 
                     {openMenu && (
-                        <div className="dropdown-menu">
+                        <div className="dropdown-menu__modal">
                             <div className="dropdown-menu__item">
-                                <Link to="/user-info">Thông tin cá nhân</Link>
+                                <Link
+                                    to="/user-info"
+                                    style={{
+                                        textDecoration: "none",
+                                        color: "black"
+                                    }}
+                                >
+                                    Thông tin cá nhân
+                                </Link>
                             </div>
                             <div
                                 className="dropdown-menu__item"
@@ -71,11 +83,7 @@ const MainNavigation = (props) => {
             </div>
         );
     } else {
-        avatar = (
-            <NavLink to="/auth">
-                <button className="main-navigation__login-btn">Login</button>
-            </NavLink>
-        );
+        avatar = <LoginButton />;
     }
     useEffect(() => {
         setDidMount(true);
@@ -86,18 +94,56 @@ const MainNavigation = (props) => {
         return null;
     }
     return (
-        <Fragment>
-            <MainHeader>
-                <div className="main-navigation__logo">
-                    <Link to="/">
-                        <img src={logo} alt="logo" />
-                    </Link>
-                </div>
-                <SearchBar />
-
-                {avatar}
-            </MainHeader>
-        </Fragment>
+        <MainHeader className="main-header">
+            <Row
+                style={{
+                    width: "100%"
+                }}
+                className="align-items-center"
+            >
+                <Col lg={3} md={3} sm={3}>
+                    <Navbar.Brand href="/">
+                        <img src={logo} alt="logo" width="200" />
+                    </Navbar.Brand>
+                </Col>
+                <Col
+                    lg={{ span: 4, offset: 1 }}
+                    md={{ span: 4, offset: 1 }}
+                    sm={{ span: 4, offset: 1 }}
+                >
+                    <SearchBar />
+                </Col>
+                <Col
+                    // className="ms-auto"
+                    lg={{ span: 2, offset: 2 }}
+                    md={{ span: 2, offset: 2 }}
+                    sm={{ span: 2, offset: 2 }}
+                >
+                    <Row className="align-items-center">
+                        <Col>
+                            {["end"].map((placement, idx) => (
+                                <BarIcon
+                                    key={idx}
+                                    placement={placement}
+                                    name={placement}
+                                />
+                            ))}
+                        </Col>
+                        <Col
+                            className="ms-auto d-none d-xl-block"
+                            md={6}
+                            sm={6}
+                        >
+                            <BarIcon />
+                        </Col>
+                        <Col md={6} sm={6}>
+                            {" "}
+                            {avatar}{" "}
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+        </MainHeader>
     );
 };
 export default MainNavigation;

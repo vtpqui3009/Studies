@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "./SearchBar.css";
-// import SearchIcon from "@material-ui/icons/Search";
-// import CloseIcon from "@material-ui/icons/Close";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import { Link } from "react-router-dom";
@@ -74,7 +72,14 @@ function SearchBar() {
                 <div className="dataResult">
                     {filteredData.slice(0, 8).map((post, key) => {
                         return (
-                            <Link to={`/post/${post.id}`} key={post.id}>
+                            <Link
+                                to={`/post/${post.id}`}
+                                key={post.id}
+                                style={{
+                                    textDecoration: "none",
+                                    color: "black"
+                                }}
+                            >
                                 <p>{ReactHtmlParser(post.title)} </p>
                             </Link>
                         );

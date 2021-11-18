@@ -1,22 +1,24 @@
 import React from "react";
-import Form from "react-bootstrap/Form";
-
-import "./Select.css";
+import {
+    StyledSelectLabel,
+    StyledSelect,
+    StyledOption
+} from "../../components/GlobalStyledAdminSystem";
 const Select = (props) => {
     return (
-        <div>
-            <label> Chọn danh mục :</label>
-            <Form.Select
+        <div style={{ marginBottom: "40px" }}>
+            <StyledSelectLabel> Chọn vai trò :</StyledSelectLabel>
+            <StyledSelect
                 aria-label="Floating label select example"
                 value={props.value}
                 onChange={props.onChange}
                 id="select"
             >
-                <option>Chọn danh mục</option>
-                <option>Author</option>
-                <option>Admin</option>
-                <option>Admin System</option>
-            </Form.Select>
+                <StyledOption>Chọn vai trò</StyledOption>
+                <StyledOption>Author</StyledOption>
+                <StyledOption>Admin</StyledOption>
+                <StyledOption>Admin System</StyledOption>
+            </StyledSelect>
         </div>
     );
 };

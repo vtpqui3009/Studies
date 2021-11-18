@@ -7,11 +7,11 @@ import { Route, Redirect } from "react-router-dom";
 const NormalUser = () => {
     return (
         <React.Fragment>
-            <Route path="/auth" exact>
-                <Auth />
-            </Route>
             <Route path="/" exact>
                 <HomeRoute />
+            </Route>
+            <Route path="/auth" exact>
+                <Auth />
             </Route>
             <Route path="/post/:postId" exact>
                 <PostDetailRoute />

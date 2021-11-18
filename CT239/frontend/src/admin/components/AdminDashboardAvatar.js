@@ -47,9 +47,17 @@ const AdminDashboardAvatar = () => {
                     )}
 
                     {openMenu && (
-                        <div className="dropdown-menu">
+                        <div className="dropdown-menu__modal">
                             <div className="dropdown-menu__item">
-                                <Link to="/user-info">Thông tin cá nhân</Link>
+                                <Link
+                                    to="/user-info"
+                                    style={{
+                                        color: "black",
+                                        textDecoration: "none"
+                                    }}
+                                >
+                                    Thông tin cá nhân
+                                </Link>
                             </div>
                             <div
                                 className="dropdown-menu__item"

@@ -1,20 +1,14 @@
-.form-control {
+.form-control__input {
     margin: 1rem 0;
 }
 
-.form-control label,
-.form-control input,
-.form-control textarea {
-    display: block;
-}
-
-.form-control label {
+.form-control .form-control__input .form-control label {
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-.form-control input,
-.form-control textarea {
+.form-control__input input,
+.form-control__input textarea {
     width: 100%;
     font: inherit;
     border: 1px solid #ccc;
@@ -23,8 +17,8 @@
     border-radius: 6px;
 }
 
-.form-control input:focus,
-.form-control textarea:focus {
+.form-control__input input:focus,
+.form-control__input textarea:focus {
     outline: none;
     background: #fff;
     border-color: #0d6efd;

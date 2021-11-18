@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AdminSystemSidebar from "../../sys-admin/components/AdminSystemSidebar";
+import AdminSidebar from "../components/AdminSidebar";
 import AdminLogo from "../components/AdminLogo";
 import AdminDashboardAvatar from "../components/AdminDashboardAvatar";
 import { useParams } from "react-router";
@@ -8,6 +8,7 @@ import ReactHtmlParser from "react-html-parser";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import LoadingSpinner from "../../shared/components/UIElements/LoadingSpinner";
+import { StyledAdminHeading } from "../components/GlobalAdminStyled";
 import "./ViewPost.css";
 
 const ViewPost = () => {
@@ -20,10 +21,10 @@ const ViewPost = () => {
     const [isApproved, setIsApproved] = useState("");
     const [didMount, setDidMount] = useState(false);
     useEffect(() => {
-        const fetchSinglePost = async () => {
-            setIsloading(true);
+        const fetchPosts = async () => {
             try {
-                const reponse = axios.get(
+                setIsloading(true);
+                const reponse = await axios.get(
                     "http://localhost:5000/api/posts/" + pid
                 );
                 const responseData = (await reponse).data.post;
@@ -33,9 +34,11 @@ const ViewPost = () => {
                 setContent(responseData.content);
                 setIsApproved(responseData.isApproved);
                 setIsloading(false);
-            } catch (err) {}
+            } catch (err) {
+                setIsloading(false);
+            }
         };
-        fetchSinglePost();
+        fetchPosts();
     }, [pid]);
     const titleChangedHandler = () => {};
     const descriptionChangedHandler = () => {};
@@ -51,8 +54,7 @@ const ViewPost = () => {
     }
     return (
         <div className="admin">
-            <AdminSystemSidebar />
-
+            <AdminSidebar />
             <div className="admin-dashboard">
                 <div className="admin-dashboard__heading">
                     <AdminLogo chilren="Dashboard" />
@@ -68,6 +70,7 @@ const ViewPost = () => {
                     </div>
                 </div>
                 {isLoading && <LoadingSpinner asOverlay />}
+                <StyledAdminHeading>Chi tiết bài viết</StyledAdminHeading>
                 {loadedPost && (
                     <div
                         className="admin-dashboard__view-form"

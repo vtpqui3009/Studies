@@ -1,11 +1,17 @@
 import React, { useEffect, useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
-import Button from "../../../shared/components/FormElement/Button";
 import { useLocation } from "react-router";
 import { AuthContext } from "../../../shared/context/auth-context";
-import axios from "axios";
+import Button from "../../../shared/components/FormElement/Button";
+import {
+    StyledUpdateUserForm,
+    StyledUpdateUserFormInput,
+    StyledAdminSystemHeading,
+    StyledUpdateUserFormContainer
+} from "../../components/GlobalStyledAdminSystem";
+import LoadingSpinner from "../../../shared/components/UIElements/LoadingSpinner";
 import Select from "./Select";
-import "./UpdateUser.css";
+import axios from "axios";
 const UpdateUser = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -14,93 +20,89 @@ const UpdateUser = () => {
     const location = useLocation();
     const path = location.pathname.split("/")[3];
     const auth = useContext(AuthContext);
-    const [didMount, setDidMount] = useState(false);
-    axios.interceptors.request.use(
-        (config) => {
-            config.headers.Authorization = "Bearer " + auth.token;
-            return config;
-        },
-        (error) => {
-            return Promise.reject(error);
-        }
-    );
-    useEffect(() => {
-        const fetchUser = async () => {
-            const response = await axios.get(
-                "http://localhost:5000/api/users/" + path
-            );
-            const responseData = await response.data.user;
-            setName(responseData.name);
-            setEmail(responseData.email);
-        };
-        fetchUser();
-    }, [path]);
+    const [isLoading, setIsLoading] = useState(false);
     const convertToSlug = (text) => {
         return text
             .toLowerCase()
             .replace(/ /g, "-")
             .replace(/[^\w-]+/g, "");
     };
-    const newRole = convertToSlug(role);
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get(
+                    "http://localhost:5000/api/users/" + path
+                );
+                const responseData = await response.data.user;
+                setName(responseData.name);
+                setEmail(responseData.email);
+                setIsLoading(false);
+            } catch (err) {
+                setIsLoading(false);
+            }
+        };
+        fetchUsers();
+    }, [path]);
+    const nameChangedHandler = (event) => {
+        setName(event.target.value);
+    };
+    const emailChangedHandler = (event) => {
+        setEmail(event.target.value);
+    };
+    const roleChangedHandler = (event) => {
+        setRole(event.target.value);
+    };
     const categoryUpdateSubmitHandler = async (event) => {
         event.preventDefault();
+        const config = {
+            headers: { Authorization: "Bearer " + auth.token },
+            "Content-Type": "application/json"
+        };
         try {
+            setIsLoading(true);
             await axios.patch(
                 "http://localhost:5000/api/users/update/" + path,
                 JSON.stringify({
                     name: name,
                     email: email,
-                    role: newRole
-                })
+                    role: convertToSlug(role)
+                }),
+                config
             );
-        } catch (err) {}
+            setIsLoading(false);
+        } catch (err) {
+            setIsLoading(false);
+        }
         history.push("/sys-admin");
     };
-
-    useEffect(() => {
-        setDidMount(true);
-        return () => setDidMount(false);
-    }, []);
-
-    if (!didMount) {
-        return null;
-    }
-    const nameChangedHandler = (event) => {
-        setName(event.target.value);
-        console.log(event.target.value);
-    };
-    const emailChangedHandler = (event) => {
-        setEmail(event.target.value);
-        console.log(event.target.value);
-    };
-    const roleChangedHandler = (event) => {
-        setRole(event.target.value);
-        console.log(event.target.value);
-    };
     return (
-        <form
-            onSubmit={categoryUpdateSubmitHandler}
-            className="user-form__update"
-        >
-            <label htmlFor="name">Name :</label>
-            <input
-                type="text"
-                value={name}
-                onChange={nameChangedHandler}
-                className="user-form__input"
-                id="name"
-            />
-            <label htmlFor="email">Email :</label>
-            <input
-                type="text"
-                value={email}
-                onChange={emailChangedHandler}
-                className="user-form__input"
-                id="email"
-            />
-            <Select value={role} onChange={roleChangedHandler} />
-            <Button type="submit">Cập nhật</Button>
-        </form>
+        <StyledUpdateUserFormContainer>
+            {isLoading && <LoadingSpinner asOverlay />}
+            <StyledAdminSystemHeading
+                style={{ marginLeft: "200px", display: "block" }}
+            >
+                Cập nhật thông tin người dùng
+            </StyledAdminSystemHeading>
+            <StyledUpdateUserForm onSubmit={categoryUpdateSubmitHandler}>
+                <label htmlFor="name">Name :</label>
+                <StyledUpdateUserFormInput
+                    type="text"
+                    value={name}
+                    onChange={nameChangedHandler}
+                    id="name"
+                />
+                <label htmlFor="email">Email :</label>
+                <StyledUpdateUserFormInput
+                    type="text"
+                    value={email}
+                    onChange={emailChangedHandler}
+                    id="email"
+                />
+                <Select value={role} onChange={roleChangedHandler} />
+                <Button type="submit">Cập nhật</Button>
+            </StyledUpdateUserForm>
+        </StyledUpdateUserFormContainer>
     );
 };
 export default UpdateUser;

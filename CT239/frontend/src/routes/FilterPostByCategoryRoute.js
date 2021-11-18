@@ -1,18 +1,19 @@
 import SideBar from "../shared/components/sidebar-nav/SideBar";
 import MainNavigation from "../shared/components/navigation/MainNavigation";
+import React from "react";
 import Menu from "../shared/components/menu/Menu";
 import Footer from "../shared/pages/Footer";
 import FilterPostByCategory from "../categories/FilterPost/FilterPostByCategory";
-import React from "react";
+import { Container } from "react-bootstrap";
 const FilterPostByCategoryRoute = () => {
     return (
-        <React.Fragment>
+        <Container style={{ background: "white" }}>
             <SideBar />
             <MainNavigation />
             <Menu />
             <FilterPostByCategory />
             <Footer />
-        </React.Fragment>
+        </Container>
     );
 };
 export default FilterPostByCategoryRoute;
